@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore - Special Collections</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Main Container -->
+    <div class="container mx-auto px-8 py-4">
+        <!-- Header Section -->
+        <header id="navbar"></header>
+
+        <!-- Main Content Area -->
+        <div class="grid grid-cols-4 gap-8 mt-8">
+            <!-- Sidebar for Special Collections -->
+            <aside class="col-span-1 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-indigo-700">Special Collections</h2>
+                <ul class="space-y-4">
+                    <li><a href="#" onclick="showCollection('Signed Copies')" class="block hover:text-yellow-400">Signed Copies</a></li>
+                    <li><a href="#" onclick="showCollection('Limited Editions')" class="block hover:text-yellow-400">Limited Editions</a></li>
+                    <li><a href="#" onclick="showCollection('Collector’s Items')" class="block hover:text-yellow-400">Collector’s Items</a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Special Collection Display -->
+            <main class="col-span-2 bg-white p-8 rounded-lg shadow-lg">
+                <div id="collectionContent" class="text-center mb-8">
+                    <h2 class="text-4xl font-bold text-indigo-700">Special Collections</h2>
+                </div>
+                <div id="collectionDetails" class="grid grid-cols-2 gap-8">
+                    <!-- Special Collection Picture Display -->
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/special1.jpg" alt="Special Collection Image" class="h-full w-auto">
+                    </div>
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/special2.jpg" alt="Special Collection Image" class="h-full w-auto">
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Sidebar for Book Information -->
+            <aside class="col-span-1 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-indigo-700">Book Information</h2>
+                <div id="bookInformation">
+                    <p class="text-lg mb-4">Select a special collection to view detailed information about exclusive books, including author details, ratings, and prices.</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            showCollection('Signed Copies');
+            fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('#navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+        });
+
+        function showCollection(collection) {
+            document.getElementById('collectionContent').innerHTML = `<h2 class="text-4xl font-bold text-indigo-700">${collection}</h2>`;
+            const collectionDetails = document.getElementById('collectionDetails');
+            collectionDetails.classList.remove('hidden');
+            let content = '';
+            if (collection === 'Signed Copies') {
+                content = `
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/signed1.jpg" alt="Signed Copy Image" class="h-full w-auto">
+                    </div>
+                    <div class="bg-indigo-100 h-64 rounded-lg p-4">
+                        <h4 class="text-lg font-bold">Author A</h4>
+                        <p class="mt-2">Signed edition of a popular novel by Author A. Limited availability.</p>
+                        <p class="mt-4 font-semibold">Price: $99.99</p>
+                    </div>`;
+            } else if (collection === 'Limited Editions') {
+                content = `
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/limited1.jpg" alt="Limited Edition Image" class="h-full w-auto">
+                    </div>
+                    <div class="bg-indigo-100 h-64 rounded-lg p-4">
+                        <h4 class="text-lg font-bold">Author B</h4>
+                        <p class="mt-2">Limited edition print of a classic novel, featuring exclusive artwork.</p>
+                        <p class="mt-4 font-semibold">Price: $149.99</p>
+                    </div>`;
+            } else if (collection === 'Collector’s Items') {
+                content = `
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/collector1.jpg" alt="Collector Item Image" class="h-full w-auto">
+                    </div>
+                    <div class="bg-indigo-100 h-64 rounded-lg p-4">
+                        <h4 class="text-lg font-bold">Author C</h4>
+                        <p class="mt-2">Rare collector’s item with special annotations by the author.</p>
+                        <p class="mt-4 font-semibold">Price: $199.99</p>
+                    </div>`;
+            }
+            collectionDetails.innerHTML = content;
+        }
+    </script>
+</body>
+
+</html>

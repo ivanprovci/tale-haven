@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore - Events & Book Signings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Main Container -->
+    <div class="container mx-auto px-8 py-4">
+        <!-- Header Section -->
+        <header id="navbar"></header>
+
+        <!-- Main Content Area -->
+        <div class="grid grid-cols-4 gap-8 mt-8">
+            <!-- Sidebar for Event Filters -->
+            <aside class="col-span-1 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-indigo-700">Event Filters</h2>
+                <ul class="space-y-4">
+                    <li><a href="#" onclick="filterEvents('Author')" class="block hover:text-yellow-400">Filter by Author</a></li>
+                    <li><a href="#" onclick="filterEvents('Rating')" class="block hover:text-yellow-400">Filter by Rating</a></li>
+                    <li><a href="#" onclick="filterEvents('Category')" class="block hover:text-yellow-400">Filter by Category</a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Events & Book Signings Display -->
+            <main class="col-span-2 bg-white p-8 rounded-lg shadow-lg">
+                <div id="eventsContent" class="text-center mb-8">
+                    <h2 class="text-4xl font-bold text-indigo-700">Events & Book Signings</h2>
+                </div>
+                <div id="eventsDetails" class="grid grid-cols-1 gap-8">
+                    <!-- Active Event Picture Display -->
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/event1.jpg" alt="Active Event Image" class="h-full w-auto">
+                    </div>
+                    <div class="bg-yellow-100 p-6 rounded-lg shadow-md">
+                        <h4 class="text-lg font-bold">Upcoming Author Event</h4>
+                        <p class="mt-2">Join us for a live book signing event with Author A, including a Q&A session.</p>
+                        <p class="mt-4 font-semibold">Date: August 25th, 2024</p>
+                        <button class="mt-4 bg-indigo-700 text-white py-2 px-4 rounded hover:bg-indigo-800">RSVP or Pre-Order Event-Related Books</button>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Sidebar for Other Activities -->
+            <aside class="col-span-1 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-indigo-700">Other Activities</h2>
+                <ul class="space-y-4">
+                    <li><a href="#" class="block hover:text-yellow-400">Section 1</a></li>
+                    <li><a href="#" class="block hover:text-yellow-400">Section 2</a></li>
+                    <li><a href="#" class="block hover:text-yellow-400">Section 3</a></li>
+                    <li><a href="#" class="block hover:text-yellow-400">Section 4</a></li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('#navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+        });
+
+        function filterEvents(filter) {
+            const eventsDetails = document.getElementById('eventsDetails');
+            let content = '';
+            if (filter === 'Author') {
+                content = `
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/event_author.jpg" alt="Event by Author" class="h-full w-auto">
+                    </div>
+                    <div class="bg-yellow-100 p-6 rounded-lg shadow-md">
+                        <h4 class="text-lg font-bold">Author X Book Signing</h4>
+                        <p class="mt-2">Meet Author X at an exclusive book signing event.</p>
+                        <p class="mt-4 font-semibold">Date: September 15th, 2024</p>
+                        <button class="mt-4 bg-indigo-700 text-white py-2 px-4 rounded hover:bg-indigo-800">RSVP or Pre-Order Event-Related Books</button>
+                    </div>`;
+            } else if (filter === 'Rating') {
+                content = `
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/event_rating.jpg" alt="Highly Rated Event" class="h-full w-auto">
+                    </div>
+                    <div class="bg-yellow-100 p-6 rounded-lg shadow-md">
+                        <h4 class="text-lg font-bold">Top Rated Author Meet & Greet</h4>
+                        <p class="mt-2">Join a session with highly-rated authors and get your books signed.</p>
+                        <p class="mt-4 font-semibold">Date: October 10th, 2024</p>
+                        <button class="mt-4 bg-indigo-700 text-white py-2 px-4 rounded hover:bg-indigo-800">RSVP or Pre-Order Event-Related Books</button>
+                    </div>`;
+            } else if (filter === 'Category') {
+                content = `
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/event_category.jpg" alt="Event by Category" class="h-full w-auto">
+                    </div>
+                    <div class="bg-yellow-100 p-6 rounded-lg shadow-md">
+                        <h4 class="text-lg font-bold">Genre-Specific Book Signing</h4>
+                        <p class="mt-2">Attend a book signing for your favorite genre and interact with the author.</p>
+                        <p class="mt-4 font-semibold">Date: November 5th, 2024</p>
+                        <button class="mt-4 bg-indigo-700 text-white py-2 px-4 rounded hover:bg-indigo-800">RSVP or Pre-Order Event-Related Books</button>
+                    </div>`;
+            }
+            eventsDetails.innerHTML = content;
+        }
+    </script>
+</body>
+
+</html>

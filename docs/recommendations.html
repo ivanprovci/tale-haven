@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore - Recommendations</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Main Container -->
+    <div class="container mx-auto px-8 py-4">
+        <!-- Header Section -->
+        <header id="navbar"></header>
+
+        <!-- Main Content Area -->
+        <div class="grid grid-cols-4 gap-8 mt-8">
+            <!-- Sidebar for Recommendations Filters -->
+            <aside class="col-span-1 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-indigo-700">Recommendations</h2>
+                <ul class="space-y-4">
+                    <li><a href="#" onclick="filterRecommendations('Author')" class="block hover:text-yellow-400">Filter by Author</a></li>
+                    <li><a href="#" onclick="filterRecommendations('Rating')" class="block hover:text-yellow-400">Filter by Rating</a></li>
+                    <li><a href="#" onclick="filterRecommendations('Category')" class="block hover:text-yellow-400">Filter by Category</a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Recommendations Display -->
+            <main class="col-span-2 bg-white p-8 rounded-lg shadow-lg">
+                <div id="recommendationsContent" class="text-center mb-8">
+                    <h2 class="text-4xl font-bold text-indigo-700">Personalized Recommendations</h2>
+                </div>
+                <div id="recommendationsDetails" class="grid grid-cols-2 gap-8">
+                    <!-- Recommendations Picture Display -->
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/recommend1.jpg" alt="Recommendation Image" class="h-full w-auto">
+                    </div>
+                    <div class="bg-indigo-100 h-64 rounded-lg p-4">
+                        <h4 class="text-lg font-bold">Book Title 1</h4>
+                        <p class="mt-2">Recommended based on your interest in similar genres and authors.</p>
+                        <p class="mt-4 font-semibold">Price: $29.99</p>
+                    </div>
+                </div>
+                <div id="contentValidity" class="mt-12 bg-yellow-100 p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-indigo-700 mb-4">Why This Recommendation?</h3>
+                    <p>These books have been selected based on your previous purchases and interests, offering you the best possible personalized experience.</p>
+                </div>
+            </main>
+
+            <!-- Right Sidebar for "Customers Also Bought" Section -->
+            <aside class="col-span-1 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-indigo-700">Customers Also Bought</h2>
+                <ul class="space-y-4">
+                    <li><a href="#" class="block hover:text-yellow-400">Book Title A</a></li>
+                    <li><a href="#" class="block hover:text-yellow-400">Book Title B</a></li>
+                    <li><a href="#" class="block hover:text-yellow-400">Book Title C</a></li>
+                    <li><a href="#" class="block hover:text-yellow-400">Book Title D</a></li>
+                    <li><a href="#" class="block hover:text-yellow-400">Book Title E</a></li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('#navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+        });
+
+        function filterRecommendations(filter) {
+            const recommendationsDetails = document.getElementById('recommendationsDetails');
+            let content = '';
+            if (filter === 'Author') {
+                content = `
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/recommend_author.jpg" alt="Recommendation by Author" class="h-full w-auto">
+                    </div>
+                    <div class="bg-indigo-100 h-64 rounded-lg p-4">
+                        <h4 class="text-lg font-bold">Book by Author X</h4>
+                        <p class="mt-2">Recommended based on your preference for books by Author X.</p>
+                        <p class="mt-4 font-semibold">Price: $24.99</p>
+                    </div>`;
+            } else if (filter === 'Rating') {
+                content = `
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/recommend_rating.jpg" alt="Recommendation by Rating" class="h-full w-auto">
+                    </div>
+                    <div class="bg-indigo-100 h-64 rounded-lg p-4">
+                        <h4 class="text-lg font-bold">Highly Rated Book</h4>
+                        <p class="mt-2">This book has been highly rated by readers and fits your reading interests.</p>
+                        <p class="mt-4 font-semibold">Price: $34.99</p>
+                    </div>`;
+            } else if (filter === 'Category') {
+                content = `
+                    <div class="bg-indigo-100 h-64 rounded-lg flex items-center justify-center">
+                        <img src="images/recommend_category.jpg" alt="Recommendation by Category" class="h-full w-auto">
+                    </div>
+                    <div class="bg-indigo-100 h-64 rounded-lg p-4">
+                        <h4 class="text-lg font-bold">Book in Favorite Category</h4>
+                        <p class="mt-2">Based on your interest in this category, this book is recommended for you.</p>
+                        <p class="mt-4 font-semibold">Price: $27.99</p>
+                    </div>`;
+            }
+            recommendationsDetails.innerHTML = content;
+        }
+    </script>
+</body>
+
+</html>
