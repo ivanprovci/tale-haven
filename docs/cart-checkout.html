@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookstore - Shopping Cart/Checkout</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BFRX4vW0.css">
 </head>
 
 <body class="bg-gray-100">
@@ -35,7 +35,8 @@
                     <form class="mt-4 space-y-4">
                         <div>
                             <label for="billingAddress" class="block text-lg font-semibold">Billing Address:</label>
-                            <input type="text" id="billingAddress" name="billingAddress" class="w-full p-2 border rounded">
+                            <input type="text" id="billingAddress" name="billingAddress"
+                                class="w-full p-2 border rounded">
                         </div>
                         <div>
                             <label for="phoneNumber" class="block text-lg font-semibold">Phone Number:</label>
@@ -62,7 +63,8 @@
                     <div class="bg-yellow-100 p-6 rounded-lg shadow-md">
                         <h4 class="text-lg font-bold">Simplified Checkout</h4>
                         <p class="mt-2">Choose from multiple payment options to complete your purchase securely.</p>
-                        <button class="mt-4 bg-indigo-700 text-white py-2 px-4 rounded hover:bg-indigo-800" onclick="showPaymentTab()">Proceed to Payment</button>
+                        <button class="mt-4 bg-indigo-700 text-white py-2 px-4 rounded hover:bg-indigo-800"
+                            onclick="showPaymentTab()">Proceed to Payment</button>
                     </div>
                 </div>
             </main>
@@ -86,20 +88,24 @@
             <h2 class="text-2xl font-bold text-indigo-700 mb-6">Payment Options</h2>
             <p class="mb-4">Please select a payment method to proceed:</p>
             <ul class="space-y-4">
-                <li><input type="radio" name="payment" id="creditCard" class="mr-2"><label for="creditCard">Credit Card</label></li>
+                <li><input type="radio" name="payment" id="creditCard" class="mr-2"><label for="creditCard">Credit
+                        Card</label></li>
                 <li><input type="radio" name="payment" id="paypal" class="mr-2"><label for="paypal">PayPal</label></li>
-                <li><input type="radio" name="payment" id="bankTransfer" class="mr-2"><label for="bankTransfer">Bank Transfer</label></li>
+                <li><input type="radio" name="payment" id="bankTransfer" class="mr-2"><label for="bankTransfer">Bank
+                        Transfer</label></li>
             </ul>
-            <button class="mt-6 bg-indigo-700 text-white py-2 px-4 rounded hover:bg-indigo-800" onclick="closePaymentTab()">Confirm Payment</button>
-            <button class="mt-4 bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" onclick="closePaymentTab()">Cancel</button>
+            <button class="mt-6 bg-indigo-700 text-white py-2 px-4 rounded hover:bg-indigo-800"
+                onclick="closePaymentTab()">Confirm Payment</button>
+            <button class="mt-4 bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
+                onclick="closePaymentTab()">Cancel</button>
         </div>
     </div>
 
-        <!-- Footer Section -->
-        <footer id="footer"></footer>
+    <!-- Footer Section -->
+    <footer id="footer"></footer>
 
     <script>
-            document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
             // Load the navbar
             fetch('navbar.html')
                 .then(response => response.text())
@@ -114,7 +120,7 @@
                 .then(data => {
                     document.querySelector('#footer').innerHTML = data;
                 })
-                .catch(error => console.error('Error loading footer:', error));    
+                .catch(error => console.error('Error loading footer:', error));
         });
 
         function showPaymentTab() {

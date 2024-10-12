@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookstore - Special Collections</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BFRX4vW0.css">
 </head>
 
 <body class="bg-gray-100">
@@ -20,9 +20,12 @@
             <aside class="col-span-1 bg-white p-8 rounded-lg shadow-lg">
                 <h2 class="text-2xl font-bold mb-6 text-indigo-700">Special Collections</h2>
                 <ul class="space-y-4">
-                    <li><a href="#" onclick="showCollection('Signed Copies')" class="block hover:text-yellow-400">Signed Copies</a></li>
-                    <li><a href="#" onclick="showCollection('Limited Editions')" class="block hover:text-yellow-400">Limited Editions</a></li>
-                    <li><a href="#" onclick="showCollection('Collector’s Items')" class="block hover:text-yellow-400">Collector’s Items</a></li>
+                    <li><a href="#" onclick="showCollection('Signed Copies')" class="block hover:text-yellow-400">Signed
+                            Copies</a></li>
+                    <li><a href="#" onclick="showCollection('Limited Editions')"
+                            class="block hover:text-yellow-400">Limited Editions</a></li>
+                    <li><a href="#" onclick="showCollection('Collector’s Items')"
+                            class="block hover:text-yellow-400">Collector’s Items</a></li>
                 </ul>
             </aside>
 
@@ -46,17 +49,18 @@
             <aside class="col-span-1 bg-white p-8 rounded-lg shadow-lg">
                 <h2 class="text-2xl font-bold mb-6 text-indigo-700">Book Information</h2>
                 <div id="bookInformation">
-                    <p class="text-lg mb-4">Select a special collection to view detailed information about exclusive books, including author details, ratings, and prices.</p>
+                    <p class="text-lg mb-4">Select a special collection to view detailed information about exclusive
+                        books, including author details, ratings, and prices.</p>
                 </div>
             </aside>
         </div>
     </div>
 
-        <!-- Footer Section -->
-        <footer id="footer"></footer>
+    <!-- Footer Section -->
+    <footer id="footer"></footer>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
             // Load the navbar
             fetch('navbar.html')
                 .then(response => response.text())
@@ -71,7 +75,7 @@
                 .then(data => {
                     document.querySelector('#footer').innerHTML = data;
                 })
-                .catch(error => console.error('Error loading footer:', error));    
+                .catch(error => console.error('Error loading footer:', error));
         });
 
         function showCollection(collection) {
